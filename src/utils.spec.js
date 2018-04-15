@@ -23,6 +23,11 @@ describe('when detecting chart type ', function () {
     const type = utils.detectType(str)
     expect(type).toBe('git')
   })
+  it('should handle a graph defintion for svnGraph', function () {
+    const str = '  \n  svnGraph TB:\nbfs1:queue'
+    const type = utils.detectType(str)
+    expect(type).toBe('svn')
+  })
 })
 
 describe('when finding substring in array ', function () {

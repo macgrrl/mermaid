@@ -31,6 +31,9 @@ import classDb from './diagrams/class/classDb'
 import gitGraphRenderer from './diagrams/git/gitGraphRenderer'
 import gitGraphParser from './diagrams/git/parser/gitGraph'
 import gitGraphAst from './diagrams/git/gitGraphAst'
+import svnGraphRenderer from './diagrams/svn/svnGraphRenderer'
+import svnGraphParser from './diagrams/svn/parser/svnGraph'
+import svnGraphAst from './diagrams/svn/svnGraphAst'
 
 const themes = {}
 for (const themeName of ['default', 'forest', 'dark', 'neutral']) {
@@ -211,7 +214,8 @@ const config = {
     axisFormat: '%Y-%m-%d'
   },
   class: {},
-  git: {}
+  git: {},
+  svn: {}
 }
 
 setLogLevel(config.logLevel)
@@ -224,6 +228,10 @@ function parse (text) {
     case 'git':
       parser = gitGraphParser
       parser.parser.yy = gitGraphAst
+      break
+    case 'svn':
+      parser = svnGraphParser
+      parser.parser.yy = svnGraphAst
       break
     case 'flowchart':
       parser = flowParser
@@ -387,6 +395,11 @@ const render = function (id, txt, cb, container) {
       config.flowchart.arrowMarkerAbsolute = config.arrowMarkerAbsolute
       gitGraphRenderer.setConf(config.git)
       gitGraphRenderer.draw(txt, id, false)
+      break
+    case 'svn':
+      config.flowchart.arrowMarkerAbsolute = config.arrowMarkerAbsolute
+      svnGraphRenderer.setConf(config.svn)
+      svnGraphRenderer.draw(txt, id, false)
       break
     case 'flowchart':
       config.flowchart.arrowMarkerAbsolute = config.arrowMarkerAbsolute

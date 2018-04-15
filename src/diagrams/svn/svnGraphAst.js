@@ -57,7 +57,7 @@ export const setOptions = function (rawOptString) {
   try {
     options = JSON.parse(rawOptString)
   } catch (e) {
-    logger.error('error while parsing gitGraph options', e.message)
+    logger.error('error while parsing svnGraph options', e.message)
   }
 }
 

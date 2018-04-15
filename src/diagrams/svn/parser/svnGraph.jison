@@ -18,7 +18,7 @@
 \s+                             /* skip all whitespace */
 \#[^\n]*                        /* skip comments */
 \%%[^\n]*                       /* skip comments */
-"svnGraph"                      return 'GG';
+"svnGraph"                      return 'SG';
 "commit"                        return 'COMMIT';
 "branch"                        return 'BRANCH';
 "merge"                         return 'MERGE';
@@ -46,8 +46,8 @@
 %% /* language grammar */
 
 start
-    : GG ':' document EOF{ return $3; }
-    | GG DIR ':' document EOF {yy.setDirection($2); return $4;}
+    : SG ':' document EOF{ return $3; }
+    | SG DIR ':' document EOF {yy.setDirection($2); return $4;}
     ;
 
 
